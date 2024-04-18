@@ -6,13 +6,12 @@ using UnityEngine;
 public class Balloon : MonoBehaviour
 {
     [SerializeField] private float _spped;
-    private CircleCollider2D _balloonCollider;
+    [SerializeField] private CircleCollider2D _balloonCollider; 
     void Start()
     {
         _balloonCollider = GetComponent<CircleCollider2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position += _spped * Time.deltaTime * Vector3.up;
