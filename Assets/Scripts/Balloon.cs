@@ -1,21 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Balloon : MonoBehaviour
 {
-    [SerializeField] private float _spped;
-    [SerializeField] private CircleCollider2D _balloonCollider; 
-    void Start()
+    [SerializeField] private float _speed;
+    private CircleCollider2D _balloonCollider; 
+    void Awake()
     {
-        _balloonCollider = GetComponent<CircleCollider2D>();
+        if (_balloonCollider != null)
+        {
+            _balloonCollider = GetComponent<CircleCollider2D>();
+            Debug.Log("Colllider Found!)");
+        }
+        else Debug.Log("Colllider Not Found!)");
     }
 
     void Update()
     {
-        transform.position += _spped * Time.deltaTime * Vector3.up;
+        transform.position += _speed * Time.deltaTime * Vector3.up;
+
         if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+
+            RaycastHit2D hit = Physics2D.Raycast(touchPos, Vector2.zero);
+            if(hit.collider != null)
+            {
+                Debug.Log("Raycast hit something: " +hit.collider.gameObject.name);
+            }
+            else
+            {
+                Debug.Log("Raycast did not hit anything: " + hit.collider.gameObject.name);
+            }
+
+            if (hit.collider != null && hit.collider == _balloonCollider)
+            {
+                Debug.Log("Balloon Popped!");
+                // Play sound here and increase score
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                Debug.Log("Touch did not overlap with balloon collider");
+            }
+        }
+
+
+
+        /*if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
@@ -28,7 +60,11 @@ public class Balloon : MonoBehaviour
                     //play sound here + increase score.
                     Destroy(this.gameObject);
                 }
+                else
+                {
+                    Debug.Log("Colllider Not Found!)");
+                }
             }
-        }
+        }*/
     }
 }
