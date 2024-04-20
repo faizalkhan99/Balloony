@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class Balloon : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    [SerializeField] private int _speed;
     private CircleCollider2D _balloonCollider;
 
+    [SerializeField] private string _triggerName;
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     void Start()
     {
@@ -13,12 +20,12 @@ public class Balloon : MonoBehaviour
             _balloonCollider = GetComponent<CircleCollider2D>();
             Debug.Log("Colllider Found!)");
         }
-        else Debug.Log("Colllider Not Found!)");
     }
 
     void Update()
     {
         transform.position += _speed * Time.deltaTime * Vector3.up;
+        Debug.Log("Speed: " + _speed);
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -26,7 +33,6 @@ public class Balloon : MonoBehaviour
 
             if (touch.phase == TouchPhase.Began)
             {
-                Debug.Log("Touch Taken");
                 Collider2D touchedCollider = Physics2D.OverlapCircle(touchPos, 1.75f);
                 if (touchedCollider != null && touchedCollider == _balloonCollider && touchedCollider.CompareTag("Balloon"))
                 {
@@ -37,18 +43,18 @@ public class Balloon : MonoBehaviour
             }
         }
     }
-
+    public void SetBalloonSpeed(int speed)
+    {
+        _speed = speed ;
+    }
     private void DestroyBalloon()
     {
-        Destroy(this.gameObject);
+        _animator.SetTrigger(_triggerName);
+        _balloonCollider.enabled = false;
+        Destroy(this.gameObject, 0.5f);
     }
     private void PlayPopSFX()
     {
 
     }
-
-
-
-
-    
 }

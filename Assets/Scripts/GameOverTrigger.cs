@@ -8,7 +8,7 @@ public class GameOverTrigger : MonoBehaviour
         if (collision.CompareTag("Balloon"))
         {
             Debug.Log("Game Over!");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            UIManager.Instance.GameOverScreen();
         }
     }
 }

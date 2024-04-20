@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _triggerName: yellow_pop
 --- !u!58 &1250067973847831284
 CircleCollider2D:
   m_ObjectHideFlags: 0

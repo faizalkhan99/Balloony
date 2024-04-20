@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _triggerName: orange_pop
 --- !u!50 &6134228148253360380
 Rigidbody2D:
   serializedVersion: 4
