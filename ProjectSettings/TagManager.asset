@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Balloon
   - spawner
+  - Obstacle
   layers:
   - Default
   - TransparentFX

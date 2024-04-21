@@ -7,7 +7,6 @@ public class GameOverTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Balloon"))
         {
-            Debug.Log("Game Over!");
             UIManager.Instance.GameOverScreen();
         }
     }

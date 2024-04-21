@@ -7,7 +7,11 @@ public class Balloon : MonoBehaviour
 
     [SerializeField] private string _triggerName;
     private Animator _animator;
-
+    public enum ObjectType{
+        balloon,
+        obstacle
+    }
+    public ObjectType type;
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -18,14 +22,12 @@ public class Balloon : MonoBehaviour
         if (_balloonCollider == null)
         {
             _balloonCollider = GetComponent<CircleCollider2D>();
-            Debug.Log("Colllider Found!)");
         }
     }
 
     void Update()
     {
         transform.position += _speed * Time.deltaTime * Vector3.up;
-        Debug.Log("Speed: " + _speed);
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -34,11 +36,25 @@ public class Balloon : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 Collider2D touchedCollider = Physics2D.OverlapCircle(touchPos, 1.75f);
-                if (touchedCollider != null && touchedCollider == _balloonCollider && touchedCollider.CompareTag("Balloon"))
+                if (type == ObjectType.balloon)
                 {
-                    UIManager.Instance.UpdateScore();
-                    PlayPopSFX();
-                    DestroyBalloon();
+
+                    if (touchedCollider != null && touchedCollider == _balloonCollider && touchedCollider.CompareTag("Balloon"))
+                    {
+                        PlayPopSFX();
+                        UIManager.Instance.UpdateScore();
+                        DestroyBalloon();
+                    }
+                }
+                else if (type == ObjectType.obstacle)
+                {
+                    if (touchedCollider != null && touchedCollider == _balloonCollider  && touchedCollider.CompareTag("Obstacle"))
+                    {
+                        PlayPopSFX();
+                        UIManager.Instance.GameOverScreen();
+                        DestroyBalloon();
+                    }
+                    Destroy(this.gameObject, 20f);
                 }
             }
         }
@@ -53,8 +69,10 @@ public class Balloon : MonoBehaviour
         _balloonCollider.enabled = false;
         Destroy(this.gameObject, 0.5f);
     }
+    [SerializeField] private AudioClip _popSFX;
     private void PlayPopSFX()
     {
-
+        if(_popSFX && AudioManager.Instance)
+        AudioManager.Instance.PlaySFX(_popSFX);
     }
 }

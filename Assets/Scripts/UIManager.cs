@@ -67,6 +67,10 @@ public class UIManager : MonoBehaviour
     {
         _score += 1;
     }
+    public int ReturnScore()
+    {
+        return _score;
+    }
     private void DisplayScore()
     {
         if (_scoreTxt)
@@ -80,12 +84,14 @@ public class UIManager : MonoBehaviour
         if(condition)
         {
             Time.timeScale = 0f;
+            AudioManager.Instance.PauseBGM();
             if(_pauseMenuPanel) _pauseMenuPanel.SetActive(condition); //true
             if(_pauseButttonPanel) _pauseButttonPanel.SetActive(!condition);  //!true
         }
         else
         {
             Time.timeScale = 1f;
+            AudioManager.Instance.UnpauseBGM();
             if(_pauseMenuPanel) _pauseMenuPanel.SetActive(condition); //false
             if(_pauseButttonPanel) _pauseButttonPanel.SetActive(!condition);  //!false
         }
@@ -93,7 +99,8 @@ public class UIManager : MonoBehaviour
     public void GameOverScreen()
     {
         Time.timeScale = 0f;
-        if(_restartPanel) _restartPanel.SetActive(true);
+        AudioManager.Instance.PauseBGM();
+        if (_restartPanel) _restartPanel.SetActive(true);
     }
 
     public void CreditsScreen()

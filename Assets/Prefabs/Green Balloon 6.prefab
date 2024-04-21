@@ -187,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _triggerName: green_pop
+  _popSFX: {fileID: 8300000, guid: 9f15929651ebf524597d1e1ef52c44e9, type: 3}
 --- !u!50 &6134228148253360380
 Rigidbody2D:
   serializedVersion: 4
