@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _triggerName: blue_pop
+  _triggerName: 
   type: 1
-  _popSFX: {fileID: 8300000, guid: 9f15929651ebf524597d1e1ef52c44e9, type: 3}
+  _popSFX: {fileID: 8300000, guid: be79b8fa6c7801743b13c7f7c807fb42, type: 3}
 --- !u!58 &4375679884551994798
 CircleCollider2D:
   m_ObjectHideFlags: 0

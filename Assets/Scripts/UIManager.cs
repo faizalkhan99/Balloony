@@ -123,6 +123,21 @@ public class UIManager : MonoBehaviour
         if(_loadingScreen) _loadingScreen.SetActive(false);
         if(_pauseButttonPanel) _pauseButttonPanel.SetActive(false);
     }
+
+    [SerializeField] private AudioClip _buttonClickIn;
+    [SerializeField] private AudioClip _buttonClickOut;
+    public void PlayButtonClickSFX(bool isThisInSound)
+    {
+        if(isThisInSound)
+        {
+            AudioManager.Instance.PlaySFX(_buttonClickIn);
+        }
+        else
+        {
+            AudioManager.Instance.PlaySFX(_buttonClickOut);
+        }
+    }
+    
     public void ExitGame()
     {
         Application.Quit();
