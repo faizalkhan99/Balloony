@@ -47,7 +47,6 @@ public class Movement : MonoBehaviour
     {
         if (collision.CompareTag("Balloon"))
         {
-            Debug.Log("lmao ded");
             Time.timeScale = 0;
             UIManager.Instance.GameOverScreen(_reasonToDie);
             Destroy(this.gameObject);
