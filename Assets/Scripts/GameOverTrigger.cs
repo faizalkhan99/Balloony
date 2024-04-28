@@ -7,7 +7,7 @@ public class GameOverTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Balloon"))
         {
-            UIManager.Instance.GameOverScreen();
+            UIManager.Instance.GameOverScreen("balloon"); //2=balloon was the reason for player death.
         }
     }
 }

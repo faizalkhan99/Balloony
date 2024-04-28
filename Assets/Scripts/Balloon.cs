@@ -7,6 +7,11 @@ public class Balloon : MonoBehaviour
 
     [SerializeField] private string _triggerName;
     private Animator _animator;
+
+    [SerializeField] private GameObject _balloonLoseImage;
+    [SerializeField] private GameObject _obstacleLoseImage;
+
+
     public enum ObjectType{
         balloon,
         obstacle
@@ -51,7 +56,7 @@ public class Balloon : MonoBehaviour
                     if (touchedCollider != null && touchedCollider == _balloonCollider  && touchedCollider.CompareTag("Obstacle"))
                     {
                         PlayPopSFX();
-                        UIManager.Instance.GameOverScreen();
+                        UIManager.Instance.GameOverScreen("spikes"); //1=player touched spikes, hence died.
                         DestroyBalloon();
                     }
                     Destroy(this.gameObject, 20f);
@@ -59,6 +64,7 @@ public class Balloon : MonoBehaviour
             }
         }
     }
+    
     public void SetBalloonSpeed(int speed)
     {
         _speed = speed ;

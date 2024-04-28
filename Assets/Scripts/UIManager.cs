@@ -96,11 +96,25 @@ public class UIManager : MonoBehaviour
             if(_pauseButttonPanel) _pauseButttonPanel.SetActive(!condition);  //!false
         }
     }
-    public void GameOverScreen()
+
+    [SerializeField] private Image _obstacleLoseImage;
+    [SerializeField] private Image _balloonLoseImage;
+    public void GameOverScreen(string _loseReason)
     {
         Time.timeScale = 0f;
         AudioManager.Instance.PauseBGM();
+        TurnEverythingOFF();
         if (_restartPanel) _restartPanel.SetActive(true);
+        if(_loseReason == "spikes" && _obstacleLoseImage)
+        {
+            _obstacleLoseImage.gameObject.SetActive(true);
+            _balloonLoseImage.gameObject.SetActive(false);
+        }
+        else if(_loseReason == "balloon" && _balloonLoseImage)
+        {
+            _balloonLoseImage.gameObject.SetActive(true);
+            _obstacleLoseImage.gameObject.SetActive(false);
+        }
     }
 
     public void CreditsScreen()
@@ -136,6 +150,10 @@ public class UIManager : MonoBehaviour
         {
             AudioManager.Instance.PlaySFX(_buttonClickOut);
         }
+    }
+    public void ExternalLinks(string url)
+    {
+        Application.OpenURL(url);
     }
     
     public void ExitGame()
