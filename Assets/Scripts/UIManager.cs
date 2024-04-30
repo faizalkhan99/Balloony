@@ -99,6 +99,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Image _obstacleLoseImage;
     [SerializeField] private Image _balloonLoseImage;
+    [SerializeField] private TextMeshProUGUI _genericLoseScreenText;
     public void GameOverScreen(string _loseReason)
     {
         Time.timeScale = 0f;
@@ -108,12 +109,20 @@ public class UIManager : MonoBehaviour
         if(_loseReason == "spikes" && _obstacleLoseImage)
         {
             _obstacleLoseImage.gameObject.SetActive(true);
-            _balloonLoseImage.gameObject.SetActive(false);
+            _balloonLoseImage?.gameObject.SetActive(false);
+            _genericLoseScreenText?.gameObject.SetActive(false);
         }
         else if(_loseReason == "balloon" && _balloonLoseImage)
         {
             _balloonLoseImage.gameObject.SetActive(true);
-            _obstacleLoseImage.gameObject.SetActive(false);
+            _obstacleLoseImage?.gameObject.SetActive(false);
+            _genericLoseScreenText?.gameObject.SetActive(false);
+        }
+        else if (_loseReason == "generic" && _genericLoseScreenText)
+        {
+            _genericLoseScreenText?.gameObject.SetActive(true);
+            _balloonLoseImage?.gameObject.SetActive(false);
+            _obstacleLoseImage?.gameObject.SetActive(false);
         }
     }
 

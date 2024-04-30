@@ -1,25 +1,19 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _minX;
     [SerializeField] private float _minY;
     [SerializeField] private float _maxX;
     [SerializeField] private float _maxY;
-
     [SerializeField] private float _minSpeed;
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _speed;
     [SerializeField] private float _secondsToMaxDifficulty;
-
-    [SerializeField] private string _reasonToDie;
-
     [SerializeField] private Vector2 _targetPosition;
     void Start()
     {
         _targetPosition = GetRandomPosition();
     }
-
     Vector2 GetRandomPosition()
     {
         float randomX = Random.Range(_minX, _maxX);
@@ -40,16 +34,6 @@ public class Movement : MonoBehaviour
         else
         {
             _targetPosition = GetRandomPosition();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Balloon"))
-        {
-            Time.timeScale = 0;
-            UIManager.Instance.GameOverScreen(_reasonToDie);
-            Destroy(this.gameObject);
         }
     }
 }

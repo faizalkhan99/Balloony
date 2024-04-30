@@ -12,10 +12,10 @@ public class Parallax : MonoBehaviour
     [SerializeField] private float _xStartCoordinate;
     void Update()
     {
-        transform.position += new Vector3(-1, 0, 0) * _speed * Time.deltaTime;
+        transform.position += _speed * Time.deltaTime * new Vector3(-1, 0, 0);
         if(transform.position.x >= _xEndCoordinate)
         {
-            transform.position = new Vector3(_xStartCoordinate, transform.position.y, transform.position.z);
+            transform.position = new(_xStartCoordinate, transform.position.y, transform.position.z);
         }
     }
 }

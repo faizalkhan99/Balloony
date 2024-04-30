@@ -57,7 +57,7 @@ public class Balloon : MonoBehaviour
                     {
                         PlayPopSFX();
                         UIManager.Instance.GameOverScreen("spikes"); //1=player touched spikes, hence died.
-                        DestroyBalloon();
+                        //DestroyBalloon();
                     }
                     Destroy(this.gameObject, 20f);
                 }
