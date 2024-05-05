@@ -4,6 +4,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class PPChange : MonoBehaviour
 {
+
     [SerializeField] private PostProcessVolume _postProcessingVolume;
     [SerializeField] private PostProcessProfile[] _postProcessProfiles;
 
@@ -27,7 +28,7 @@ public class PPChange : MonoBehaviour
             _postProcessingProfileIndex++;
             if (_postProcessingProfileIndex >= _postProcessProfiles.Length)
             {
-                _postProcessingProfileIndex = 0; 
+                _postProcessingProfileIndex = 0;
             }
 
             _postProcessingVolume.profile = _postProcessProfiles[_postProcessingProfileIndex];
