@@ -9,33 +9,48 @@ public class DragAndDrop : MonoBehaviour
         circleCollider = GetComponent<CircleCollider2D>();
     }
 
- 
+
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 2)
         {
-            Touch touch = Input.GetTouch(0);
-            Vector2 touchposition = Camera.main.ScreenToWorldPoint(touch.position);
+            return;
+        }
+        if (UIManager.Instance._isTouchWorking)
+        {
 
-            if(touch.phase == TouchPhase.Began)
+
+            for (int i = 0; i < Input.touchCount; i++)
             {
-                Collider2D touchedCollider = Physics2D.OverlapPoint(touchposition);
-                if(circleCollider == touchedCollider)
+                Touch touch = Input.GetTouch(i);
+                Vector2 touchposition = Camera.main.ScreenToWorldPoint(touch.position);
+
+                switch (touch.phase)
                 {
-                    _moveAllowed = true;
+                    case TouchPhase.Began:
+                        Collider2D touchedCollider = Physics2D.OverlapPoint(touchposition);
+                        if (circleCollider == touchedCollider)
+                        {
+                            _moveAllowed = true;
+                        }
+                        break;
+
+                    case TouchPhase.Moved:
+                        if (_moveAllowed)
+                        {
+                            transform.position = new Vector2(touchposition.x, touchposition.y);
+                        }
+                        break;
+
+                    case TouchPhase.Ended:
+                        _moveAllowed = false;
+                        break;
                 }
             }
-            if(touch.phase == TouchPhase.Moved)
-            {
-                if(_moveAllowed)
-                {
-                    transform.position = new Vector2(touchposition.x, touchposition.y);
-                }
-            }
-            if(touch.phase == TouchPhase.Ended)
-            {
-                _moveAllowed = false;
-            }
+        }
+        else
+        {
+            return;
         }
     }
 }

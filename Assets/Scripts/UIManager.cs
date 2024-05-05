@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreTxt;
     void Start()
     {
+        _isTouchWorking = true;
         TurnEverythingOFF();
         if(_mainmenuPanel) _mainmenuPanel.SetActive(true);
         if(_pauseButttonPanel) _pauseButttonPanel.SetActive(true);
@@ -79,11 +80,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public bool _isTouchWorking;
     public void GamePauseUnpause( bool condition)
     {
         if(condition)
-        {
+        { 
             Time.timeScale = 0f;
+            _isTouchWorking = false;
             AudioManager.Instance.PauseBGM();
             if(_pauseMenuPanel) _pauseMenuPanel.SetActive(condition); //true
             if(_pauseButttonPanel) _pauseButttonPanel.SetActive(!condition);  //!true
@@ -91,6 +94,7 @@ public class UIManager : MonoBehaviour
         else
         {
             Time.timeScale = 1f;
+            _isTouchWorking = true;
             AudioManager.Instance.UnpauseBGM();
             if(_pauseMenuPanel) _pauseMenuPanel.SetActive(condition); //false
             if(_pauseButttonPanel) _pauseButttonPanel.SetActive(!condition);  //!false
@@ -103,6 +107,7 @@ public class UIManager : MonoBehaviour
     public void GameOverScreen(string _loseReason)
     {
         Time.timeScale = 0f;
+        _isTouchWorking = false;
         AudioManager.Instance.PauseBGM();
         TurnEverythingOFF();
         if (_restartPanel) _restartPanel.SetActive(true);
@@ -125,7 +130,15 @@ public class UIManager : MonoBehaviour
             _obstacleLoseImage?.gameObject.SetActive(false);
         }
     }
-
+    [SerializeField] private GameObject _winScreenPanel;
+    public void WinScreen()
+    {
+        Time.timeScale = 0f;
+        _isTouchWorking = false;
+        AudioManager.Instance.PauseBGM();
+        TurnEverythingOFF();
+        _winScreenPanel?.gameObject.SetActive(false);
+    }
     public void CreditsScreen()
     {
         TurnEverythingOFF();
