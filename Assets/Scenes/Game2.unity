@@ -6835,8 +6835,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1051916918}
     - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 1051916918}
+    - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
       propertyPath: shootInterval
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+      propertyPath: _shootInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+      propertyPath: _projectileSpeed
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7883,10 +7895,10 @@ MonoBehaviour:
   - {fileID: 135189040}
   - {fileID: 1858795649}
   - {fileID: 165385682}
-  _currentLevelIndex: 0
+  _currentLevelIndex: 5
   _levelNumberTxt: {fileID: 944559300}
   _timeToSurviveText: {fileID: 1518194834}
-  _surviveTime: 5
+  _surviveTime: 100
 --- !u!4 &1001979595
 Transform:
   m_ObjectHideFlags: 0
@@ -15196,6 +15208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseMenuPanel: {fileID: 1424026364}
   _mainmenuPanel: {fileID: 0}
+  _gameModeSelectPanel: {fileID: 0}
   _restartPanel: {fileID: 216116011}
   _pauseButttonPanel: {fileID: 1701372041}
   _creditsPanel: {fileID: 0}
@@ -16874,12 +16887,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 789928515}
     - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 789928515}
+    - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
       propertyPath: shootInterval
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+      propertyPath: _shootInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
       propertyPath: _projectileSpeed
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

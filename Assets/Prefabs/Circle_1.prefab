@@ -163,8 +163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 2068105222227716113, guid: 147ce2e6b3f8fd444905951b4ee1cce8, type: 3}
-  target: {fileID: 0}
-  shootInterval: 3
+  _target: {fileID: 0}
+  _spaenPos: {fileID: 8654353062631581507}
+  _shootInterval: 0
   _projectileSpeed: 10000
 --- !u!114 &8210337988557723306
 MonoBehaviour:

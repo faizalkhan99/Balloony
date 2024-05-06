@@ -18,11 +18,13 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject _pauseMenuPanel;
     [SerializeField] private GameObject _mainmenuPanel;
+    [SerializeField] private GameObject _gameModeSelectPanel;
     [SerializeField] private GameObject _restartPanel;
     [SerializeField] private GameObject _pauseButttonPanel;
     [SerializeField] private GameObject _creditsPanel;
     [SerializeField] private GameObject _loadingScreen;
     [SerializeField] private Slider _progressBar;
+
     private void Awake()
     {
         if(instance == null) instance = this;
@@ -149,6 +151,11 @@ public class UIManager : MonoBehaviour
         TurnEverythingOFF();
         if(_mainmenuPanel) _mainmenuPanel.SetActive(true); 
     }
+    public void GameModeSelect()
+    {
+        TurnEverythingOFF();
+        _gameModeSelectPanel?.gameObject.SetActive(true);
+    }
 
     public void TurnEverythingOFF()
     {
@@ -158,10 +165,12 @@ public class UIManager : MonoBehaviour
         if(_pauseMenuPanel) _pauseMenuPanel.SetActive(false);
         if(_loadingScreen) _loadingScreen.SetActive(false);
         if(_pauseButttonPanel) _pauseButttonPanel.SetActive(false);
+        if(_gameModeSelectPanel) _gameModeSelectPanel.SetActive(false);
     }
 
     [SerializeField] private AudioClip _buttonClickIn;
     [SerializeField] private AudioClip _buttonClickOut;
+    [Tooltip("Check the box if the sfx is in sound.")]
     public void PlayButtonClickSFX(bool isThisInSound)
     {
         if(isThisInSound)
@@ -182,5 +191,4 @@ public class UIManager : MonoBehaviour
     {
         Application.Quit();
     }
-
 }

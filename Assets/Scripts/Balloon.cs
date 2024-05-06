@@ -35,32 +35,39 @@ public class Balloon : MonoBehaviour
         transform.position += _speed * Time.deltaTime * Vector3.up;
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
-            Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-
-            if (touch.phase == TouchPhase.Began)
+            if (UIManager.Instance._isTouchWorking)
             {
-                Collider2D touchedCollider = Physics2D.OverlapCircle(touchPos, 1.75f);
-                if (type == ObjectType.balloon)
-                {
+                Touch touch = Input.GetTouch(0);
+                Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
 
-                    if (touchedCollider != null && touchedCollider == _balloonCollider && touchedCollider.CompareTag("Balloon"))
-                    {
-                        PlayPopSFX();
-                        UIManager.Instance.UpdateScore();
-                        DestroyBalloon();
-                    }
-                }
-                else if (type == ObjectType.obstacle)
+                if (touch.phase == TouchPhase.Began)
                 {
-                    if (touchedCollider != null && touchedCollider == _balloonCollider  && touchedCollider.CompareTag("Obstacle"))
+                    Collider2D touchedCollider = Physics2D.OverlapCircle(touchPos, 1.75f);
+                    if (type == ObjectType.balloon)
                     {
-                        PlayPopSFX();
-                        UIManager.Instance.GameOverScreen("spikes"); //1=player touched spikes, hence died.
-                        //DestroyBalloon();
+
+                        if (touchedCollider != null && touchedCollider == _balloonCollider && touchedCollider.CompareTag("Balloon"))
+                        {
+                            PlayPopSFX();
+                            UIManager.Instance.UpdateScore();
+                            DestroyBalloon();
+                        }
                     }
-                    Destroy(this.gameObject, 20f);
+                    else if (type == ObjectType.obstacle)
+                    {
+                        if (touchedCollider != null && touchedCollider == _balloonCollider && touchedCollider.CompareTag("Obstacle"))
+                        {
+                            PlayPopSFX();
+                            UIManager.Instance.GameOverScreen("spikes"); //1=player touched spikes, hence died.
+                                                                         //DestroyBalloon();
+                        }
+                        Destroy(this.gameObject, 20f);
+                    }
                 }
+            }
+            else
+            {
+                return;
             }
         }
     }
