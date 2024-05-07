@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85374acf28623674297e32361d3053e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  _target: {fileID: 0}
   _offset: -90
 --- !u!1 &3128328703269545911
 GameObject:
@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4d33d003bea5545ba01c7999e4887c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveAllowed: 0
 --- !u!114 &4966080337486925078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,11 +161,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188d9e7da80b92f4f8a56610abd507a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2068105222227716113, guid: 147ce2e6b3f8fd444905951b4ee1cce8, type: 3}
+  projectilePrefab: {fileID: 3936659532283349204, guid: f30aac028bc5d494c9a1991e3bead3a6, type: 3}
   _target: {fileID: 0}
   _spaenPos: {fileID: 8654353062631581507}
-  _shootInterval: 0
-  _projectileSpeed: 10000
+  _shootInterval: 1.5
+  _projectileSpeed: 15
 --- !u!114 &8210337988557723306
 MonoBehaviour:
   m_ObjectHideFlags: 0

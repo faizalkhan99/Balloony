@@ -58,8 +58,8 @@ public class Balloon : MonoBehaviour
                         if (touchedCollider != null && touchedCollider == _balloonCollider && touchedCollider.CompareTag("Obstacle"))
                         {
                             PlayPopSFX();
+                            Debug.Log("Balloon Script");                                             //DestroyBalloon();
                             UIManager.Instance.GameOverScreen("spikes"); //1=player touched spikes, hence died.
-                                                                         //DestroyBalloon();
                         }
                         Destroy(this.gameObject, 20f);
                     }

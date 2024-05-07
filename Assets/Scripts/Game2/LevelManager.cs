@@ -8,16 +8,17 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _timeToSurviveText;
     [SerializeField] private float _surviveTime;
     private float _tempSurviveTime;
+
     void Start()
     {
         _tempSurviveTime = _surviveTime;
-        _levels[_currentLevelIndex].SetActive(true);
+        _levels[_currentLevelIndex]?.SetActive(true);
     }
     void Update()
     {
         _levelNumberTxt.text = "Lv " + (_currentLevelIndex+1).ToString();
         
-        if (_surviveTime<=0)
+        if (_surviveTime <= 0)
         {
             NextLevel();
         }
@@ -29,16 +30,19 @@ public class LevelManager : MonoBehaviour
     }
     private void NextLevel()
     {
-        if (_currentLevelIndex < _levels.Length - 1)
+        _levels[_currentLevelIndex]?.SetActive(false);
+        EnemyList.Instance.DeleteAllClones();
+
+        // Check if there are more levels
+        if (_currentLevelIndex + 1 < _levels.Length)
         {
             _currentLevelIndex++;
             _levels[_currentLevelIndex]?.SetActive(true);
-            _levels[_currentLevelIndex - 1]?.SetActive(false);
             _surviveTime = _tempSurviveTime;
         }
         else
         {
-            UIManager.Instance.GameOverScreen("balloon"); //game finished screen here.
+            UIManager.Instance.WinScreen();
         }
     }
 }

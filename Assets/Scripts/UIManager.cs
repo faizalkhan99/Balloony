@@ -139,7 +139,7 @@ public class UIManager : MonoBehaviour
         _isTouchWorking = false;
         AudioManager.Instance.PauseBGM();
         TurnEverythingOFF();
-        _winScreenPanel?.gameObject.SetActive(false);
+        _winScreenPanel?.gameObject.SetActive(true);
     }
     public void CreditsScreen()
     {
@@ -170,7 +170,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private AudioClip _buttonClickIn;
     [SerializeField] private AudioClip _buttonClickOut;
-    [Tooltip("Check the box if the sfx is in sound.")]
     public void PlayButtonClickSFX(bool isThisInSound)
     {
         if(isThisInSound)

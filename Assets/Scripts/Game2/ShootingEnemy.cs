@@ -1,24 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShootingEnemy : MonoBehaviour
 {
-    [SerializeField] private GameObject projectilePrefab; 
-    [SerializeField] private Transform _target; 
-    [SerializeField] private Transform _spaenPos; 
-    [SerializeField] private float _shootInterval; 
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Transform _target;
+    [SerializeField] private Transform _spaenPos;
+    [SerializeField] private float _shootInterval;
     [SerializeField] private int _projectileSpeed;
     private void Start()
     {
-        InvokeRepeating(nameof(Shoot), _shootInterval, _shootInterval);
+        StartCoroutine(Shoot());
     }
 
-    private void Shoot()
+    private IEnumerator Shoot()
     {
-        GameObject projectile = Instantiate(projectilePrefab, _spaenPos.position, Quaternion.identity);
-        Vector3 direction = (_target.position - transform.position).normalized;
-        projectile.GetComponent<Rigidbody2D>().AddForce((_projectileSpeed * direction), ForceMode2D.Impulse);
-        projectile.transform.up = direction;
+        while (gameObject)
+        {
+            yield return new WaitForSeconds(_shootInterval);
+            GameObject projectile = Instantiate(projectilePrefab, _spaenPos.position, Quaternion.identity);
+            EnemyList.Instance.AddCloneToList(projectile);
+            Vector3 direction = (_target.position - transform.position).normalized;
+            projectile.GetComponent<Rigidbody2D>().AddForce((_projectileSpeed * direction), ForceMode2D.Impulse);
+            float velocity = projectile.GetComponent<Rigidbody2D>().velocity.x > 0 ? -1 : 1;
+            projectile.transform.localScale = new Vector2(velocity * projectile.transform.localScale.x, projectile.transform.localScale.y);
+            projectile.transform.up = direction;
+        }
     }
 }

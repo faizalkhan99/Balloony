@@ -13,10 +13,11 @@ public class DestroyObjectOffscreen : MonoBehaviour
 
     void Update()
     {
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0); 
         if (transform.position.x < -screenBounds.x || transform.position.x > screenBounds.x ||
             transform.position.y < -screenBounds.y || transform.position.y > screenBounds.y)
         {
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject, 5f);
         }
     }
 }
