@@ -243,7 +243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &42063079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3592,21 +3592,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-    DESIGNED AND DEVELOPED BY
+  m_text: 'DESIGNED AND DEVELOPED BY
 
     FAIZAL KHAN
 
-    BACKGROUND ART |
-    UNITY ASSET STORE
+    BACKGROUND ART | UNITY
+    ASSET STORE
 
     BALLOONS | GAMEDEVMARKET
 
     OBSTACLE | ME LOL
 
-    MUSIC
-    | ROYALTY FREE FROM YOUTUBE
+    MUSIC |
+    ROYALTY FREE FROM YOUTUBE
 
     SFX | PIXABAY
 
@@ -3649,6 +3647,11 @@ MonoBehaviour:
     Krishna Rede
 
     Mittali Khandelwal
+
+    My
+    Mom & Sister
+
+    And Me lol
 
 '
   m_isRightToLeft: 0
