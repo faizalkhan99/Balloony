@@ -4686,7 +4686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91205f60b9f57c9468077a0c1ef889aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _invisibleAfterDeath: 1
+  _invisibleAfterDeath: 0
 --- !u!1 &449276269
 GameObject:
   m_ObjectHideFlags: 0
@@ -7088,7 +7088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91205f60b9f57c9468077a0c1ef889aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _invisibleAfterDeath: 1
+  _invisibleAfterDeath: 0
 --- !u!1001 &795360358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13959,7 +13959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91205f60b9f57c9468077a0c1ef889aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _invisibleAfterDeath: 1
+  _invisibleAfterDeath: 0
 --- !u!1 &1739201053
 GameObject:
   m_ObjectHideFlags: 0
