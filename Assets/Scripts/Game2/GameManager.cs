@@ -1,96 +1,71 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private Touch? firstTouch = null; // Track the first touch
-    private Touch? secondTouch = null; // Track the second touch
-    private Vector3[] touchPositions = new Vector3[2];
-    private Transform selectedBalloon = null; // Track the selected balloon
+    private Dictionary<int, Transform> activeTouches = new Dictionary<int, Transform>(); // Track active touches and their associated balloons
+    private Dictionary<int, Vector3> initialTouchPositions = new Dictionary<int, Vector3>(); // Track initial touch positions
 
-    private void Awake()
-    {
-        touchPositions = new Vector3[2];
-    }
-
-    void Update()
+    private void Update()
     {
         if (UIManager.Instance._isTouchWorking)
         {
             UpdateTouches();
         }
+
+        foreach (var touchId in activeTouches.Keys)
+        {
+            if (Input.touchCount > touchId)
+            {
+                Touch touch = Input.GetTouch(touchId);
+                if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+                {
+                    Vector3 currentTouchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+                    currentTouchPosition.z = 0; // Assuming z = 0 for 2D
+                    MoveObject(activeTouches[touchId], currentTouchPosition);
+                }
+            }
+        }
     }
 
     private void UpdateTouches()
     {
-        firstTouch = null;
-        secondTouch = null;
-
         // Iterate through all touches
         for (int i = 0; i < Input.touchCount; i++)
         {
             Touch touch = Input.GetTouch(i);
-            if (i < 2)
-            {
-                touchPositions[i] = Camera.main.ScreenToWorldPoint(touch.position);
+            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            touchPosition.z = 0; // Assuming z = 0 for 2D
 
-                RaycastHit2D hit = Physics2D.Raycast(touchPositions[i], Vector2.zero);
-                if (hit.collider != null)
+            if (touch.phase == TouchPhase.Began)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(touchPosition, Vector2.zero);
+                if (hit.collider != null && !activeTouches.ContainsKey(touch.fingerId))
                 {
-                    Debug.Log(hit.collider.name);
-                    HandleTouch(touch, i, hit.collider.transform);
+                    SelectBalloon(touch.fingerId, hit.collider.transform);
+                }
+            }
+            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+            {
+                if (activeTouches.ContainsKey(touch.fingerId))
+                {
+                    activeTouches.Remove(touch.fingerId);
+                    initialTouchPositions.Remove(touch.fingerId);
                 }
             }
         }
-
-        // Handle end of touch
-        if ((firstTouch.HasValue && firstTouch.Value.phase == TouchPhase.Ended) ||
-            (secondTouch.HasValue && secondTouch.Value.phase == TouchPhase.Ended))
-        {
-            selectedBalloon = null;
-        }
     }
 
-    private void HandleTouch(Touch touch, int touchIndex, Transform hitTransform)
+    private void SelectBalloon(int touchId, Transform balloon)
     {
-        if (touchIndex == 0)
-        {
-            if (!firstTouch.HasValue && (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved))
-            {
-                firstTouch = touch;
-                SelectBalloon(hitTransform);
-            }
-            if (firstTouch.HasValue && selectedBalloon != null)
-            {
-                MoveObject(selectedBalloon, touchPositions[0]);
-            }
-        }
-        else if (touchIndex == 1)
-        {
-            if (!secondTouch.HasValue && (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved))
-            {
-                secondTouch = touch;
-                SelectBalloon(hitTransform);
-            }
-            if (secondTouch.HasValue && selectedBalloon != null)
-            {
-                MoveObject(selectedBalloon, touchPositions[1]);
-            }
-        }
+        activeTouches[touchId] = balloon;
+        initialTouchPositions[touchId] = Camera.main.ScreenToWorldPoint(Input.GetTouch(touchId).position);
+        //initialTouchPositions[touchId].z = 0; // Assuming z = 0 for 2D
     }
-
-    private void SelectBalloon(Transform balloon)
-    {
-        selectedBalloon = balloon;
-    }
-
-    private Vector3 initialTouchPosition;
+    [SerializeField] private byte _interpolationSpeed;
     private void MoveObject(Transform balloon, Vector3 touchPosition)
     {
-        if (firstTouch.HasValue && firstTouch.Value.phase == TouchPhase.Began)
-        {
-            initialTouchPosition = balloon.position;
-        }
-        Vector3 direction = touchPosition - initialTouchPosition;
-        balloon.position = initialTouchPosition + direction;
+        // Using Lerp to smooth the movement
+        balloon.position = Vector3.Lerp(balloon.position, touchPosition, Time.deltaTime * _interpolationSpeed);
     }
 }
