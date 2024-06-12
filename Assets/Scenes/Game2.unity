@@ -4179,6 +4179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 8230052912887958965, guid: 6b3ce6b58676d3742b94e4f0cd54cebc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6797,6 +6801,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2056621398}
     - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+      propertyPath: _spawnPos
+      value: 
+      objectReference: {fileID: 780920453}
+    - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
       propertyPath: shootInterval
       value: 1.5
       objectReference: {fileID: 0}
@@ -6826,6 +6834,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+--- !u!224 &780920453 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8654353062631581507, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+  m_PrefabInstance: {fileID: 780920452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &786510805
 GameObject:
   m_ObjectHideFlags: 0
@@ -7023,6 +7036,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1051916918}
     - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+      propertyPath: _spawnPos
+      value: 
+      objectReference: {fileID: 789928516}
+    - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
       propertyPath: shootInterval
       value: 1.5
       objectReference: {fileID: 0}
@@ -7051,6 +7068,11 @@ PrefabInstance:
 --- !u!4 &789928515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3461073634254244224, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+  m_PrefabInstance: {fileID: 789928514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &789928516 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8654353062631581507, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
   m_PrefabInstance: {fileID: 789928514}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &790492428 stripped
@@ -9491,6 +9513,10 @@ PrefabInstance:
     - target: {fileID: 6724822306694347110, guid: df8966263f0502947b730641be41d15a, type: 3}
       propertyPath: m_Name
       value: Slow Balloon_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6724822306694347110, guid: df8966263f0502947b730641be41d15a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2728634395165611268, guid: df8966263f0502947b730641be41d15a, type: 3}
@@ -16429,7 +16455,7 @@ MonoBehaviour:
   _minY: -13
   _maxX: 64
   _maxY: 32
-  _speed: 10
+  _speed: 0
   _targetPosition: {x: 0, y: 0}
 --- !u!1 &2056648316
 GameObject:
@@ -17157,6 +17183,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 789928515}
     - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+      propertyPath: _spawnPos
+      value: 
+      objectReference: {fileID: 2694238121911608750}
+    - target: {fileID: 4966080337486925078, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
       propertyPath: shootInterval
       value: 1.5
       objectReference: {fileID: 0}
@@ -17182,6 +17212,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+--- !u!224 &2694238121911608750 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8654353062631581507, guid: 9498d6f926d6317449f057a3d9ec71ff, type: 3}
+  m_PrefabInstance: {fileID: 2694238121911608749}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
