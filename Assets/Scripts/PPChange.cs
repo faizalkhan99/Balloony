@@ -9,7 +9,7 @@ public class PPChange : MonoBehaviour
     [SerializeField] private PostProcessProfile[] _postProcessProfiles;
 
     private int _postProcessingProfileIndex;
-    [SerializeField] private int _transitionTime;
+    [SerializeField] private int[] _transitionTime;
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class PPChange : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(_transitionTime);
+            yield return new WaitForSeconds(Random.Range(_transitionTime[0], _transitionTime.Length));
 
             _postProcessingProfileIndex++;
             if (_postProcessingProfileIndex >= _postProcessProfiles.Length)

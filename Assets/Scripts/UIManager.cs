@@ -25,12 +25,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _loadingScreen;
     [SerializeField] private Slider _progressBar;
 
+    [SerializeField] private TextMeshProUGUI _scoreTxt;
+    [SerializeField] private TextMeshProUGUI _scoreTxt_copy;
     private void Awake()
     {
         if(instance == null) instance = this;
     }
 
-    [SerializeField] private TextMeshProUGUI _scoreTxt;
     void Start()
     {
         _isTouchWorking = true;
@@ -79,6 +80,7 @@ public class UIManager : MonoBehaviour
         if (_scoreTxt)
         {
             _scoreTxt.text = _score.ToString();
+            _scoreTxt_copy.text = _score.ToString();
         }
     }
 
@@ -139,7 +141,7 @@ public class UIManager : MonoBehaviour
         _isTouchWorking = false;
         AudioManager.Instance.PauseBGM();
         TurnEverythingOFF();
-        _winScreenPanel?.gameObject.SetActive(true);
+        if(_winScreenPanel) _winScreenPanel.SetActive(true);
     }
     public void CreditsScreen()
     {
@@ -159,7 +161,7 @@ public class UIManager : MonoBehaviour
 
     public void TurnEverythingOFF()
     {
-        if(_creditsPanel) _creditsPanel.gameObject.SetActive(false);
+        if(_creditsPanel) _creditsPanel.SetActive(false);
         if (_mainmenuPanel) _mainmenuPanel.SetActive(false);
         if (_restartPanel) _restartPanel.SetActive(false);
         if(_pauseMenuPanel) _pauseMenuPanel.SetActive(false);

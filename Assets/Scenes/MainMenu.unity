@@ -526,6 +526,7 @@ GameObject:
   - component: {fileID: 130020405}
   - component: {fileID: 130020404}
   - component: {fileID: 130020403}
+  - component: {fileID: 130020406}
   m_Layer: 5
   m_Name: Back Button
   m_TagString: Untagged
@@ -658,6 +659,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130020401}
   m_CullTransparentMesh: 1
+--- !u!114 &130020406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130020401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &158129550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,7 +1124,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1116,7 +1132,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.09
 --- !u!222 &390057244
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2774,7 +2790,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2782,7 +2798,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.09
 --- !u!222 &916188132
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3324,6 +3340,7 @@ GameObject:
   - component: {fileID: 1109586005}
   - component: {fileID: 1109586004}
   - component: {fileID: 1109586003}
+  - component: {fileID: 1109586006}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -3456,6 +3473,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109586001}
   m_CullTransparentMesh: 1
+--- !u!114 &1109586006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109586001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2}
+  m_EffectDistance: {x: 25, y: -20}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1120723429
 GameObject:
   m_ObjectHideFlags: 0
@@ -3783,8 +3815,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 166957500}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.388}
-  m_AnchorMax: {x: 1, y: 0.388}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 450, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3838,6 +3870,7 @@ GameObject:
   - component: {fileID: 1279875866}
   - component: {fileID: 1279875865}
   - component: {fileID: 1279875864}
+  - component: {fileID: 1279875867}
   m_Layer: 5
   m_Name: Credits Button
   m_TagString: Untagged
@@ -3970,6 +4003,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279875862}
   m_CullTransparentMesh: 1
+--- !u!114 &1279875867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279875862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1313896558
 GameObject:
   m_ObjectHideFlags: 0
@@ -4333,6 +4381,7 @@ GameObject:
   - component: {fileID: 1533027705}
   - component: {fileID: 1533027704}
   - component: {fileID: 1533027703}
+  - component: {fileID: 1533027706}
   m_Layer: 5
   m_Name: Exit Button
   m_TagString: Untagged
@@ -4465,6 +4514,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533027701}
   m_CullTransparentMesh: 1
+--- !u!114 &1533027706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533027701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1534310610
 GameObject:
   m_ObjectHideFlags: 0
@@ -4477,6 +4541,7 @@ GameObject:
   - component: {fileID: 1534310614}
   - component: {fileID: 1534310613}
   - component: {fileID: 1534310612}
+  - component: {fileID: 1534310615}
   m_Layer: 5
   m_Name: Back Button
   m_TagString: Untagged
@@ -4609,6 +4674,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534310610}
   m_CullTransparentMesh: 1
+--- !u!114 &1534310615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534310610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1541399290
 GameObject:
   m_ObjectHideFlags: 0
@@ -5153,7 +5233,7 @@ RectTransform:
   m_Father: {fileID: 1025713752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.388}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}

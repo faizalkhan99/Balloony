@@ -5,7 +5,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject[] _levels;
     [SerializeField] private int _currentLevelIndex = 0;
     [SerializeField] private TextMeshProUGUI _levelNumberTxt;
+    [SerializeField] private TextMeshProUGUI _levelNumberTxt_copy;
     [SerializeField] private TextMeshProUGUI _timeToSurviveText;
+    [SerializeField] private TextMeshProUGUI _timeToSurviveText_copy;
     [SerializeField] private float _surviveTime;
     private float _tempSurviveTime;
 
@@ -16,7 +18,8 @@ public class LevelManager : MonoBehaviour
     }
     void Update()
     {
-        _levelNumberTxt.text = "Lv " + (_currentLevelIndex+1).ToString();
+        _levelNumberTxt.text = "Level: " + (_currentLevelIndex+1).ToString();
+        _levelNumberTxt_copy.text = "Level: " + (_currentLevelIndex+1).ToString();
         
         if (_surviveTime <= 0)
         {
@@ -26,6 +29,7 @@ public class LevelManager : MonoBehaviour
         {
             _surviveTime -= Time.deltaTime;
             _timeToSurviveText.text = _surviveTime.ToString("F0");
+            _timeToSurviveText_copy.text = _surviveTime.ToString("F0");
         }
     }
     private void NextLevel()
