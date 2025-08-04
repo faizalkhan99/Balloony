@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     private void MoveObject(Transform balloon, Vector3 touchPosition)
     {
         // Using Lerp to smooth the movement
+        if(balloon != null)
         balloon.position = Vector3.Lerp(balloon.position, touchPosition, Time.deltaTime * _interpolationSpeed);
     }
 }

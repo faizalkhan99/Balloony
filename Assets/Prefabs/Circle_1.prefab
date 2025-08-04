@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85374acf28623674297e32361d3053e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
+  _targets: []
   _offset: -90
+  _shootingEnemy: {fileID: 0}
 --- !u!1 &3128328703269545911
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,10 +163,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 3936659532283349204, guid: f30aac028bc5d494c9a1991e3bead3a6, type: 3}
-  _target: {fileID: 0}
-  _spaenPos: {fileID: 8654353062631581507}
-  _shootInterval: 1.5
-  _projectileSpeed: 15
+  _target:
+  - {fileID: 0}
+  - {fileID: 0}
+  _spawnPos: {fileID: 8654353062631581507}
+  _shootInterval: 2
+  _projectileSpeed: 20
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3867600213818859689}
+        m_TargetAssemblyTypeName: LookAtTarget, Assembly-CSharp
+        m_MethodName: HandleShoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8210337988557723306
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,8 +8,15 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _levelNumberTxt_copy;
     [SerializeField] private TextMeshProUGUI _timeToSurviveText;
     [SerializeField] private TextMeshProUGUI _timeToSurviveText_copy;
+    [SerializeField] private float[] _surviveTimeRange;
     [SerializeField] private float _surviveTime;
     private float _tempSurviveTime;
+
+    private void OnEnable()
+    {
+        int rand = Random.Range(0, _surviveTimeRange.Length);
+        _surviveTime = _surviveTimeRange[rand];
+    }
 
     void Start()
     {
