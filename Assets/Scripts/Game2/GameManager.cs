@@ -3,6 +3,34 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            //DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    [SerializeField] private AudioClip _gameOverSFX;
+    [SerializeField] private bool _boolLock = false;
+    public void EndGame()
+    {
+        if (!_boolLock)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.GameOverScreen("generic");
+            AudioManager.Instance?.PlaySFX(_gameOverSFX);
+            _boolLock = true;
+        }
+    }
+
+
     private Dictionary<int, Transform> activeTouches = new Dictionary<int, Transform>(); // Track active touches and their associated balloons
     private Dictionary<int, Vector3> initialTouchPositions = new Dictionary<int, Vector3>(); // Track initial touch positions
 
@@ -66,7 +94,7 @@ public class GameManager : MonoBehaviour
     private void MoveObject(Transform balloon, Vector3 touchPosition)
     {
         // Using Lerp to smooth the movement
-        if(balloon != null)
-        balloon.position = Vector3.Lerp(balloon.position, touchPosition, Time.deltaTime * _interpolationSpeed);
+        if (balloon != null)
+            balloon.position = Vector3.Lerp(balloon.position, touchPosition, Time.deltaTime * _interpolationSpeed);
     }
 }
