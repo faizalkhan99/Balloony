@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (!GameCountdownManager.Instance.IsPlaying()) return;
         if (UIManager.Instance._isTouchWorking)
         {
             UpdateTouches();

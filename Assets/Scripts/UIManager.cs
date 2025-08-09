@@ -20,24 +20,26 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _mainmenuPanel;
     [SerializeField] private GameObject _gameModeSelectPanel;
     [SerializeField] private GameObject _restartPanel;
+    [SerializeField] private GameObject _nextLevelPanel;
     [SerializeField] private GameObject _pauseButttonPanel;
     [SerializeField] private GameObject _creditsPanel;
     [SerializeField] private GameObject _loadingScreen;
     [SerializeField] private Slider _progressBar;
 
+    //[SerializeField] private TextMeshProUGUI _countDownTxt;
     [SerializeField] private TextMeshProUGUI _scoreTxt;
     [SerializeField] private TextMeshProUGUI _scoreTxt_copy;
     private void Awake()
     {
-        if(instance == null) instance = this;
+        if (instance == null) instance = this;
     }
 
     void Start()
     {
         _isTouchWorking = true;
         TurnEverythingOFF();
-        if(_mainmenuPanel) _mainmenuPanel.SetActive(true);
-        if(_pauseButttonPanel) _pauseButttonPanel.SetActive(true);
+        if (_mainmenuPanel) _mainmenuPanel.SetActive(true);
+        if (_pauseButttonPanel) _pauseButttonPanel.SetActive(true);
         Time.timeScale = 1.0f;
         if (_scoreTxt)
         {
@@ -53,7 +55,7 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         TurnEverythingOFF();
-        if(_loadingScreen) _loadingScreen.SetActive(true);
+        if (_loadingScreen) _loadingScreen.SetActive(true);
         StartCoroutine(LoadingAsync(sceneName));
     }
     IEnumerator LoadingAsync(string sceneName)
@@ -85,23 +87,23 @@ public class UIManager : MonoBehaviour
     }
 
     public bool _isTouchWorking;
-    public void GamePauseUnpause( bool condition)
+    public void GamePauseUnpause(bool condition)
     {
-        if(condition)
-        { 
+        if (condition)
+        {
             Time.timeScale = 0f;
             _isTouchWorking = false;
             AudioManager.Instance.PauseBGM();
-            if(_pauseMenuPanel) _pauseMenuPanel.SetActive(condition); //true
-            if(_pauseButttonPanel) _pauseButttonPanel.SetActive(!condition);  //!true
+            if (_pauseMenuPanel) _pauseMenuPanel.SetActive(condition); //true
+            if (_pauseButttonPanel) _pauseButttonPanel.SetActive(!condition);  //!true
         }
         else
         {
             Time.timeScale = 1f;
             _isTouchWorking = true;
             AudioManager.Instance.UnpauseBGM();
-            if(_pauseMenuPanel) _pauseMenuPanel.SetActive(condition); //false
-            if(_pauseButttonPanel) _pauseButttonPanel.SetActive(!condition);  //!false
+            if (_pauseMenuPanel) _pauseMenuPanel.SetActive(condition); //false
+            if (_pauseButttonPanel) _pauseButttonPanel.SetActive(!condition);  //!false
         }
     }
 
@@ -115,13 +117,13 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.PauseBGM();
         TurnEverythingOFF();
         if (_restartPanel) _restartPanel.SetActive(true);
-        if(_loseReason == "spikes" && _obstacleLoseImage)
+        if (_loseReason == "spikes" && _obstacleLoseImage)
         {
             _obstacleLoseImage.gameObject.SetActive(true);
             _balloonLoseImage?.gameObject.SetActive(false);
             _genericLoseScreenText?.gameObject.SetActive(false);
         }
-        else if(_loseReason == "balloon" && _balloonLoseImage)
+        else if (_loseReason == "balloon" && _balloonLoseImage)
         {
             _balloonLoseImage.gameObject.SetActive(true);
             _obstacleLoseImage?.gameObject.SetActive(false);
@@ -134,6 +136,14 @@ public class UIManager : MonoBehaviour
             _obstacleLoseImage?.gameObject.SetActive(false);
         }
     }
+
+    public void ShowNextLevelScreen()
+    {
+        Time.timeScale = 0f;
+        TurnEverythingOFF(); 
+        if (_nextLevelPanel) _nextLevelPanel.SetActive(true);
+    }
+
     [SerializeField] private GameObject _winScreenPanel;
     public void WinScreen()
     {
@@ -141,17 +151,17 @@ public class UIManager : MonoBehaviour
         _isTouchWorking = false;
         AudioManager.Instance.PauseBGM();
         TurnEverythingOFF();
-        if(_winScreenPanel) _winScreenPanel.SetActive(true);
+        if (_winScreenPanel) _winScreenPanel.SetActive(true);
     }
     public void CreditsScreen()
     {
         TurnEverythingOFF();
-        if(_creditsPanel) _creditsPanel.SetActive(true);
+        if (_creditsPanel) _creditsPanel.SetActive(true);
     }
     public void BackToHome()
     {
         TurnEverythingOFF();
-        if(_mainmenuPanel) _mainmenuPanel.SetActive(true); 
+        if (_mainmenuPanel) _mainmenuPanel.SetActive(true);
     }
     public void GameModeSelect()
     {
@@ -161,20 +171,22 @@ public class UIManager : MonoBehaviour
 
     public void TurnEverythingOFF()
     {
-        if(_creditsPanel) _creditsPanel.SetActive(false);
+        if (_creditsPanel) _creditsPanel.SetActive(false);
         if (_mainmenuPanel) _mainmenuPanel.SetActive(false);
         if (_restartPanel) _restartPanel.SetActive(false);
-        if(_pauseMenuPanel) _pauseMenuPanel.SetActive(false);
-        if(_loadingScreen) _loadingScreen.SetActive(false);
-        if(_pauseButttonPanel) _pauseButttonPanel.SetActive(false);
-        if(_gameModeSelectPanel) _gameModeSelectPanel.SetActive(false);
+        if (_pauseMenuPanel) _pauseMenuPanel.SetActive(false);
+        if (_loadingScreen) _loadingScreen.SetActive(false);
+        if (_pauseButttonPanel) _pauseButttonPanel.SetActive(false);
+        if (_gameModeSelectPanel) _gameModeSelectPanel.SetActive(false);
+        if (_nextLevelPanel) _nextLevelPanel.SetActive(false);
+        //if (_countDownTxt) _countDownTxt.gameObject.SetActive(false);
     }
 
     [SerializeField] private AudioClip _buttonClickIn;
     [SerializeField] private AudioClip _buttonClickOut;
     public void PlayButtonClickSFX(bool isThisInSound)
     {
-        if(isThisInSound)
+        if (isThisInSound)
         {
             AudioManager.Instance.PlaySFX(_buttonClickIn);
         }
@@ -187,7 +199,7 @@ public class UIManager : MonoBehaviour
     {
         Application.OpenURL(url);
     }
-    
+
     public void ExitGame()
     {
         Application.Quit();

@@ -21,9 +21,9 @@ public class AttractEachOther : MonoBehaviour
 
     void Update()
     {
+        if (!GameCountdownManager.Instance.IsPlaying()) return;
         if (_targetPos)
         {
-
             Vector3 directionToTarget = _targetPos.position - transform.position;
             transform.position += _speed * Time.deltaTime * directionToTarget.normalized;
             _lineRenderer.SetPosition(0, transform.position);

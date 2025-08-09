@@ -19,7 +19,8 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        if((Vector2)transform.position != _targetPosition)
+        if (!GameCountdownManager.Instance.IsPlaying()) return;
+        if ((Vector2)transform.position != _targetPosition)
         {
             transform.position = Vector2.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
         }
