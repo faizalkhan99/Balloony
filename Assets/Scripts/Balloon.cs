@@ -86,6 +86,6 @@ public class Balloon : MonoBehaviour
     private void PlayPopSFX()
     {
         if(_popSFX && AudioManager.Instance)
-        AudioManager.Instance.PlaySFX(_popSFX);
+        AudioManager.Instance.PlaySFX(SoundID.BalloonPop);
     }
 }

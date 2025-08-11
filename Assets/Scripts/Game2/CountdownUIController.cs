@@ -28,21 +28,21 @@ public class CountdownUIController : MonoBehaviour
     private IEnumerator CountdownSequence()
     {
         countdownText.text = "3";
-        AudioManager.Instance.PlaySFX(_countdown321SFX);
-        yield return new WaitForSecondsRealtime(1f); // Use REAL time
+    AudioManager.Instance.PlaySFX(SoundID.CountdownTick); // Call by ID
+    yield return new WaitForSecondsRealtime(1f);
 
-        countdownText.text = "2";
-        AudioManager.Instance.PlaySFX(_countdown321SFX);
-        yield return new WaitForSecondsRealtime(1f); // Use REAL time
+    countdownText.text = "2";
+    AudioManager.Instance.PlaySFX(SoundID.CountdownTick); // Call by ID
+    yield return new WaitForSecondsRealtime(1f);
 
-        countdownText.text = "1";
-        AudioManager.Instance.PlaySFX(_countdown321SFX);
-        yield return new WaitForSecondsRealtime(1f); // Use REAL time
+    countdownText.text = "1";
+    AudioManager.Instance.PlaySFX(SoundID.CountdownTick); // Call by ID
+    yield return new WaitForSecondsRealtime(1f);
 
-        countdownText.text = "GO!";
-        AudioManager.Instance.PlaySFX(_countdownGOSFX);
-        yield return new WaitForSecondsRealtime(1f); // Use REAL time
+    countdownText.text = "GO!";
+    AudioManager.Instance.PlaySFX(SoundID.CountdownGo);   // Call by ID
+    yield return new WaitForSecondsRealtime(1f);
 
-        countdownText.gameObject.SetActive(false);
+    countdownText.gameObject.SetActive(false);
     }
 }

@@ -21,14 +21,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _gameModeSelectPanel;
     [SerializeField] private GameObject _restartPanel;
     [SerializeField] private GameObject _nextLevelPanel;
-    [SerializeField] private GameObject _pauseButttonPanel;
+    [SerializeField] public GameObject _pauseButttonPanel;
     [SerializeField] private GameObject _creditsPanel;
     [SerializeField] private GameObject _loadingScreen;
-    [SerializeField] private Slider _progressBar;
 
-    //[SerializeField] private TextMeshProUGUI _countDownTxt;
     [SerializeField] private TextMeshProUGUI _scoreTxt;
     [SerializeField] private TextMeshProUGUI _scoreTxt_copy;
+    [SerializeField] private Slider _progressBar;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -58,6 +57,51 @@ public class UIManager : MonoBehaviour
         if (_loadingScreen) _loadingScreen.SetActive(true);
         StartCoroutine(LoadingAsync(sceneName));
     }
+
+    // IEnumerator LoadingAsync(string sceneName)
+    // {
+    //     // --- Step 1: Start loading the scene but don't activate it yet ---
+    //     AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+    //     operation.allowSceneActivation = false; // This is the key!
+
+    //     // Set a minimum load time to ensure the screen is visible
+    //     float minLoadTime = 3.0f;
+    //     float elapsedTime = 0f;
+
+    //     // --- Step 2: Simulate a smooth progress bar ---
+    //     // We'll animate the slider's value while the real loading happens.
+    //     // The loop continues until the real load is almost done AND our minimum time has passed.
+    //     while (elapsedTime < minLoadTime || operation.progress < 0.9f)
+    //     {
+    //         elapsedTime += Time.deltaTime;
+
+    //         // Calculate a simulated progress value that increases over our minimum load time
+    //         float simulatedProgress = Mathf.Clamp01(elapsedTime / minLoadTime);
+
+    //         // Use the HIGHER value between the real progress and our simulated progress
+    //         // This ensures the bar never goes backward if real loading is faster.
+    //         float displayProgress = Mathf.Max(operation.progress, simulatedProgress);
+
+    //         // Smoothly move the progress bar towards the target value instead of jumping instantly
+    //         _progressBar.value = Mathf.MoveTowards(_progressBar.value, displayProgress, Time.deltaTime);
+
+    //         yield return null; // Wait for the next frame
+    //     }
+
+    //     // --- Step 3: Finish the loading bar and activate the scene ---
+    //     // Animate the last 10% of the bar to make it feel complete.
+    //     while (_progressBar.value < 1f)
+    //     {
+    //         _progressBar.value = Mathf.MoveTowards(_progressBar.value, 1f, Time.deltaTime * 2f); // Move a bit faster
+    //         yield return null;
+    //     }
+
+    //     // Finally, allow the new scene to activate.
+    //     operation.allowSceneActivation = true;
+    // }
+
+
+
     IEnumerator LoadingAsync(string sceneName)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
@@ -140,7 +184,9 @@ public class UIManager : MonoBehaviour
     public void ShowNextLevelScreen()
     {
         Time.timeScale = 0f;
-        TurnEverythingOFF(); 
+        AudioManager.Instance.PauseBGM();
+        AudioManager.Instance.PlaySFX(SoundID.LevelComplete);
+        TurnEverythingOFF();
         if (_nextLevelPanel) _nextLevelPanel.SetActive(true);
     }
 
@@ -149,8 +195,9 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         _isTouchWorking = false;
-        AudioManager.Instance.PauseBGM();
         TurnEverythingOFF();
+        AudioManager.Instance.PauseBGM();
+        AudioManager.Instance.PlaySFX(SoundID.GameWin);
         if (_winScreenPanel) _winScreenPanel.SetActive(true);
     }
     public void CreditsScreen()
@@ -182,18 +229,9 @@ public class UIManager : MonoBehaviour
         //if (_countDownTxt) _countDownTxt.gameObject.SetActive(false);
     }
 
-    [SerializeField] private AudioClip _buttonClickIn;
-    [SerializeField] private AudioClip _buttonClickOut;
-    public void PlayButtonClickSFX(bool isThisInSound)
+    public void PlayButtonClickSFX()
     {
-        if (isThisInSound)
-        {
-            AudioManager.Instance.PlaySFX(_buttonClickIn);
-        }
-        else
-        {
-            AudioManager.Instance.PlaySFX(_buttonClickOut);
-        }
+        AudioManager.Instance.PlaySFX(SoundID.ButtonClick);
     }
     public void ExternalLinks(string url)
     {

@@ -90,7 +90,6 @@ void Update()
     private void ShowLevelCompleteScreen()
     {
         UIManager.Instance.ShowNextLevelScreen();
-        AudioManager.Instance.PauseBGM();
     }
 
     private void ResetTimerForNewLevel()

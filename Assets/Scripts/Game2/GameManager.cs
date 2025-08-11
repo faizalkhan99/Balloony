@@ -15,8 +15,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
 
+    void Start()
+    {
+        UIManager.Instance._pauseButttonPanel.SetActive(false);
+    }
     [SerializeField] private AudioClip _gameOverSFX;
     [SerializeField] private bool _boolLock = false;
     public void EndGame()
@@ -25,7 +30,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
             UIManager.Instance.GameOverScreen("generic");
-            AudioManager.Instance?.PlaySFX(_gameOverSFX);
+            AudioManager.Instance?.PlaySFX(SoundID.GameOver);
             _boolLock = true;
         }
     }
