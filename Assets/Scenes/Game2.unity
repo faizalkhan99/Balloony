@@ -2399,7 +2399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &167428646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7327,7 +7327,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -9313,6 +9313,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels:
+  - {fileID: 413753915}
+  - {fileID: 574795622}
+  - {fileID: 1898406870}
+  - {fileID: 135189040}
+  - {fileID: 1858795649}
   - {fileID: 165385682}
   - {fileID: 1490247354}
   - {fileID: 924349382}
@@ -9321,7 +9326,7 @@ MonoBehaviour:
   _timeToSurviveText: {fileID: 1518194834}
   _timeToSurviveText_copy: {fileID: 1940829081}
   _surviveTimeRange:
-  - 4
+  - 5
 --- !u!4 &1001979595
 Transform:
   m_ObjectHideFlags: 0
@@ -12996,7 +13001,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -21.57, y: -503}
+  m_AnchoredPosition: {x: -21.569946, y: -503}
   m_SizeDelta: {x: 450, y: 180}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1455511571
@@ -13148,6 +13153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownText: {fileID: 1735492685}
+  _countdown321SFX: {fileID: 8300000, guid: 20ddc3c8d2913bc4faa150f28b81656f, type: 3}
+  _countdownGOSFX: {fileID: 8300000, guid: f029f9ef4e95cb942bbdf1f2a199877b, type: 3}
 --- !u!1 &1463563161
 GameObject:
   m_ObjectHideFlags: 0
@@ -13658,7 +13665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1490247355
 Transform:
   m_ObjectHideFlags: 0

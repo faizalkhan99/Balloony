@@ -5,6 +5,9 @@ using System.Collections;
 public class CountdownUIController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private AudioClip _countdown321SFX;
+    [SerializeField] private AudioClip _countdownGOSFX;
+
 
     void OnEnable()
     {
@@ -19,30 +22,27 @@ public class CountdownUIController : MonoBehaviour
     private void StartCountdownVisuals()
     {
         countdownText.gameObject.SetActive(true);
-        Debug.Log("Countdown set to true!");
         StartCoroutine(CountdownSequence());
     }
 
     private IEnumerator CountdownSequence()
     {
-        Debug.Log("Countdown started!");
-
         countdownText.text = "3";
-        yield return new WaitForSeconds(1f);
+        AudioManager.Instance.PlaySFX(_countdown321SFX);
+        yield return new WaitForSecondsRealtime(1f); // Use REAL time
 
         countdownText.text = "2";
-        yield return new WaitForSeconds(1f);
+        AudioManager.Instance.PlaySFX(_countdown321SFX);
+        yield return new WaitForSecondsRealtime(1f); // Use REAL time
 
         countdownText.text = "1";
-        yield return new WaitForSeconds(1f);
+        AudioManager.Instance.PlaySFX(_countdown321SFX);
+        yield return new WaitForSecondsRealtime(1f); // Use REAL time
 
         countdownText.text = "GO!";
-        yield return new WaitForSeconds(1f);
-
-        Debug.Log("Countdown ended!");
+        AudioManager.Instance.PlaySFX(_countdownGOSFX);
+        yield return new WaitForSecondsRealtime(1f); // Use REAL time
 
         countdownText.gameObject.SetActive(false);
-        Debug.Log("Countdown set to false!");
-
     }
 }

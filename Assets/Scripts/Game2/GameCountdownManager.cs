@@ -9,7 +9,6 @@ public class GameCountdownManager : MonoBehaviour
     public enum GameState { Countdown, Playing, Paused }
     private GameState _currentState;
 
-    // Events for other scripts to listen to (like UI, sound, etc.)
     public static event Action OnCountdownStarted;
     public static event Action OnCountdownFinished;
 
@@ -22,12 +21,9 @@ public class GameCountdownManager : MonoBehaviour
         else
         {
             Instance = this;
-            // Use this if you load a separate game scene and want it to persist
-            // DontDestroyOnLoad(gameObject);
         }
     }
 
-    // Starts the countdown and runs the provided action when it's finished
     public void StartLevelCountdown(Action onCompleteCallback)
     {
         StartCoroutine(CountdownCoroutine(onCompleteCallback));
@@ -35,18 +31,17 @@ public class GameCountdownManager : MonoBehaviour
 
     private IEnumerator CountdownCoroutine(Action onCompleteCallback)
     {
-        Time.timeScale = 1f;
         _currentState = GameState.Countdown;
-        OnCountdownStarted?.Invoke(); // Announce for UI
+        OnCountdownStarted?.Invoke(); // Tell the UI to show "3, 2, 1..."
 
-        // Wait for the UI to show 3, 2, 1, START!
-        yield return new WaitForSeconds(4f);
-        //Time.timeScale = 1f;
-        // Run the code that was passed in (e.g., activate the level)
+        yield return new WaitForSecondsRealtime(4f);
+
+        Time.timeScale = 1f;
+
         onCompleteCallback?.Invoke();
 
         _currentState = GameState.Playing;
-        OnCountdownFinished?.Invoke(); // Announce for player/timer
+        OnCountdownFinished?.Invoke();
     }
 
     public bool IsPlaying()

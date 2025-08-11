@@ -27,23 +27,27 @@ public class LevelManager : MonoBehaviour
         PrepareAndStartNextLevel();
     }
 
-    void Update()
+void Update()
+{
+    // Check if we are in the "Playing" state
+    if (GameCountdownManager.Instance != null && GameCountdownManager.Instance.IsPlaying())
     {
-        if (GameCountdownManager.Instance != null && GameCountdownManager.Instance.IsPlaying())
+        // Check if the timer has run out
+        if (_surviveTimeRemaining <= 0)
         {
-            if (_surviveTimeRemaining > 0)
-            {
-                _surviveTimeRemaining -= Time.deltaTime;
-                _timeToSurviveText.text = _surviveTimeRemaining.ToString("F0");
-                _timeToSurviveText_copy.text = _surviveTimeRemaining.ToString("F0");
-            }
-            else
-            {
-                ShowLevelCompleteScreen();
-                GameCountdownManager.Instance.SetState(GameCountdownManager.GameState.Paused);
-            }
+            // --- IMPROVEMENT ---
+            // Set the state to Paused FIRST to prevent this block from running again.
+            GameCountdownManager.Instance.SetState(GameCountdownManager.GameState.Paused);
+            ShowLevelCompleteScreen();
+        }
+        else
+        {
+            _surviveTimeRemaining -= Time.deltaTime;
+            _timeToSurviveText.text = _surviveTimeRemaining.ToString("F0");
+            _timeToSurviveText_copy.text = _surviveTimeRemaining.ToString("F0");
         }
     }
+}
 
     public void PrepareAndStartNextLevel()
     {
@@ -67,9 +71,10 @@ public class LevelManager : MonoBehaviour
                 _levels[_currentLevelIndex - 1]?.SetActive(false);
             }
 
-            // Now, activate the CURRENT level.
+            // Now, activate the CURRENT(jo next ana chahiye) level.
             _levels[_currentLevelIndex].SetActive(true);
-
+            EnemyList.Instance.DeleteAllClones();
+            UIManager.Instance.GamePauseUnpause(false);
             // Reset its timer and update its UI text.
             ResetTimerForNewLevel();
             UpdateLevelText();
@@ -85,6 +90,7 @@ public class LevelManager : MonoBehaviour
     private void ShowLevelCompleteScreen()
     {
         UIManager.Instance.ShowNextLevelScreen();
+        AudioManager.Instance.PauseBGM();
     }
 
     private void ResetTimerForNewLevel()
@@ -96,8 +102,8 @@ public class LevelManager : MonoBehaviour
     private void UpdateLevelText()
     {
         // We add 1 to the index for display because arrays start at 0 (Level 0 is "Level 1").
-        _levelNumberTxt.text = "Level: " + (_currentLevelIndex + 1).ToString();
-        _levelNumberTxt_copy.text = "Level: " + (_currentLevelIndex + 1).ToString();
+        _levelNumberTxt.text = "Level " + (_currentLevelIndex + 1).ToString();
+        _levelNumberTxt_copy.text = "Level " + (_currentLevelIndex + 1).ToString();
     }
 }
 
