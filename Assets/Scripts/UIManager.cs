@@ -71,9 +71,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private float _transitionTime = 1f;
     IEnumerator LoadingAsync(string sceneName)
     {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        operation.allowSceneActivation = false;
         TransObject.SetActive(true);
         yield return new WaitForSeconds(_transitionTime);
-        SceneManager.LoadScene(sceneName);
+        operation.allowSceneActivation = true;
+        //SceneManager.LoadScene(sceneName);
     }
 
 

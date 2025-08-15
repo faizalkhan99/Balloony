@@ -36,12 +36,13 @@ public class LookAtTarget : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (_currentTarget != null)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, _targetRotation, _rotationSpeed * Time.deltaTime);
         }
+        CalculateTargetRotation();
     }
 
     public void HandleShoot()
@@ -50,9 +51,10 @@ public class LookAtTarget : MonoBehaviour
         {
             int randTargetIndex = Random.Range(0, _targets.Length);
             _currentTarget = _targets[randTargetIndex];
-            CalculateTargetRotation();
+            
         }
     }
+    
 
     private void CalculateTargetRotation()
     {
