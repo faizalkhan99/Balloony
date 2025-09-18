@@ -130,6 +130,11 @@ public class UIManager : MonoBehaviour
     public void UpdateScore()
     {
         _score += 1;
+
+        if (_score > 0 && _score % 10 == 0)
+        {
+            AudioManager.Instance.PlaySFX(SoundID.yay);
+        }
     }
     public int ReturnScore()
     {

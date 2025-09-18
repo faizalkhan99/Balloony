@@ -10,11 +10,14 @@ public class ShootingEnemy : MonoBehaviour
     [SerializeField] private float _shootInterval;
     [SerializeField] private int _projectileSpeed;
 
+    private Animator _animator;
+
     public UnityEvent OnShoot = new(); // Event to notify when shooting
 
-    // Using OnEnable is better practice than Start for restarting coroutines.
+    
     private void OnEnable()
     {
+        _animator = GetComponent<Animator>();
         StartCoroutine(Shoot());
     }
 
@@ -33,6 +36,7 @@ public class ShootingEnemy : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
             GameObject projectile = Instantiate(projectilePrefab, _spawnPos.position, Quaternion.Euler(new Vector3(0, 0, angle)));
+            _animator.SetTrigger("wobble");
             AudioManager.Instance.PlaySFX(SoundID.PaperWoosh);
             EnemyList.Instance.AddCloneToList(projectile);
 

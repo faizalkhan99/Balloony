@@ -3,7 +3,7 @@ using UnityEngine;
 public class Balloon : MonoBehaviour
 {
     [SerializeField] private int _speed;
-    private CircleCollider2D _balloonCollider;
+    private CapsuleCollider2D _balloonCollider;
 
     [SerializeField] private string _triggerName;
     private Animator _animator;
@@ -12,7 +12,8 @@ public class Balloon : MonoBehaviour
     [SerializeField] private GameObject _obstacleLoseImage;
 
 
-    public enum ObjectType{
+    public enum ObjectType
+    {
         balloon,
         obstacle
     }
@@ -26,7 +27,7 @@ public class Balloon : MonoBehaviour
     {
         if (_balloonCollider == null)
         {
-            _balloonCollider = GetComponent<CircleCollider2D>();
+            _balloonCollider = GetComponent<CapsuleCollider2D>();
         }
     }
 
@@ -71,10 +72,10 @@ public class Balloon : MonoBehaviour
             }
         }
     }
-    
+
     public void SetBalloonSpeed(int speed)
     {
-        _speed = speed ;
+        _speed = speed;
     }
     private void DestroyBalloon()
     {
@@ -82,10 +83,11 @@ public class Balloon : MonoBehaviour
         _balloonCollider.enabled = false;
         Destroy(this.gameObject, 0.5f);
     }
-    [SerializeField] private AudioClip _popSFX;
     private void PlayPopSFX()
     {
-        if(_popSFX && AudioManager.Instance)
-        AudioManager.Instance.PlaySFX(SoundID.BalloonPop);
+        if (AudioManager.Instance)
+        {
+            AudioManager.Instance.PlaySFX(SoundID.BalloonPop);
+        }
     }
 }

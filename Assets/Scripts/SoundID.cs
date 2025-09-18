@@ -14,6 +14,9 @@ public enum SoundID
     BalloonPop,
     SpikesTouch,
     PaperTouch,
-    PaperWoosh
+    PaperWoosh,
+
+    //Milestone sounds
+    yay
 
 }
