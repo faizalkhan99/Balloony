@@ -56,17 +56,9 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1.0f;
         TurnEverythingOFF();
         if (_loadingScreen) _loadingScreen.SetActive(true);
+        BroAdsMan.ShowInterstitialAd(null);
         StartCoroutine(LoadingAsync(sceneName));
     }
-    // IEnumerator LoadingAsync(string sceneName)
-    // {
-    //     AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-    //     while (!operation.isDone)
-    //     {
-    //         _progressBar.value = operation.progress;
-    //         yield return new WaitForEndOfFrame();
-    //     }
-    // }
     [SerializeField] private GameObject TransObject;
     [SerializeField] private float _transitionTime = 1f;
     IEnumerator LoadingAsync(string sceneName)
@@ -76,7 +68,6 @@ public class UIManager : MonoBehaviour
         TransObject.SetActive(true);
         yield return new WaitForSeconds(_transitionTime);
         operation.allowSceneActivation = true;
-        //SceneManager.LoadScene(sceneName);
     }
 
 
