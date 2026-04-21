@@ -42,6 +42,7 @@ public class BroAdsMan : MonoBehaviour
         }
     }
 
+    [Obsolete]
     private void Start()
     {
         InitializeAds();
@@ -49,6 +50,7 @@ public class BroAdsMan : MonoBehaviour
 
 
     // Separate the actual AdMob Start
+    [Obsolete]
     public void RunAdMobInitialization(Action onComplete)
     {
         MobileAds.RaiseAdEventsOnUnityMainThread = true;
@@ -75,10 +77,13 @@ public class BroAdsMan : MonoBehaviour
     {
         ShowBanner();
     }
+
+    [Obsolete]
     public void InitializeAds()
     {
         // 1. Configure Threading (Critical for Unity)
         MobileAds.RaiseAdEventsOnUnityMainThread = true;
+        //MobileAdsEventExecutor.ExecuteInUpdate(null);
 
         // 2. Initialize SDK
         MobileAds.Initialize(initstatus =>
@@ -224,8 +229,10 @@ public class BroAdsMan : MonoBehaviour
     public static void ShowBanner()
     {
         if (Instance == null || !IsReady || Instance.BannerAdUnit == null) return;
-        Instance.BannerAdUnit.LoadAd();
-        Instance?.BannerAdUnit?.ShowAd();
+
+        // ONLY Load if we don't have a view yet. 
+        // If it exists, just call Show() to unhide it.
+        Instance.BannerAdUnit.ShowAd();
     }
     public static void HideBanner() => Instance?.BannerAdUnit?.HideAd();
 
@@ -596,15 +603,18 @@ public class BannerAdUnit : AdUnit
     public override void LoadAd()
     {
         if (string.IsNullOrEmpty(AdUnitId)) return;
-        CleanUp();
 
-        // Adaptive Banner Size
-        AdSize adaptiveSize = AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
+        // Only cleanup if we actually want to refresh the ad content
+        if (_bannerView != null) return;
 
-        _bannerView = new BannerView(AdUnitId, adaptiveSize, AdPosition.Bottom);
+        Log("Creating Banner View...");
+        // Use standard Banner size first to verify it works, then switch back to Adaptive
+        _bannerView = new BannerView(AdUnitId, AdSize.Banner, AdPosition.Bottom);
 
         var request = new AdRequest();
         _bannerView.LoadAd(request);
+
+        // Banners show automatically upon LoadAd success in AdMob
         Log("Banner Load Requested.");
     }
 
@@ -616,6 +626,7 @@ public class BannerAdUnit : AdUnit
         }
         else
         {
+            // If it's null, we MUST load it
             LoadAd();
         }
     }
